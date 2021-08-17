@@ -1,0 +1,40 @@
+en:
+  Syntro\SilverShare\Extension\ShareSiteConfigExtension:
+    Tabtitle: Metadata
+    OGImageTitle: Default preview image
+    OGImageRight: This image will be displayed for shared links if no specific image has been defined on a page.
+    SOCIALMEDIAMETA: Social Media Meta
+    TwitterSiteTitle: Twitter site
+    TwitterSiteRight: The name of your Twitter page.
+    TwitterSitePlaceholder: "@yourcompany"
+  Syntro\SilverShare\Extension\ShareExtension:
+    Sharing: Sharing
+    INFOTEXT: >
+      These options allow you to customize how this page or object is displayed
+       when you share a link. They do not directly influence SEO.  </br> You can
+       use the <a href="https://developers.facebook.com/tools/debug/" target="__blank">
+       Facebook Sharing Debugger</a>, to check how this page will be presented.
+    # Field titles
+    OGImageTitle: Shared image
+    OGTitleTitle: Shared title
+    OGDescriptionTitle: Shared description
+    OGTypeTitle: Shared type
+    TwitterTypeTitle: Twitter type
+    ExtraMetaTagsToggle: Extra meta tags
+    RENDERTYPES: Render types
+    # field descriptions
+    OGTitleRight: The title which is shown when you share this page
+    OGDescriptionRight: The summary which is shown when you share this page.
+    OGTypeRight: The type which is used to display this page when shared. Most of the time, you want this to be "website"
+    TwitterTypeRight: The type which is used to display this page when shared on Twitter. Most of the time, you want this to be "summary"
+    OGImageRight: The image which is shown when you share this page
+    # fallback indication
+    NODEAFAULTIMAGE: No image is set. This means, a crawler might select one at random.
+    DEFAULTIMAGE: The default image set in the siteconfig will be used.
+    # type translations
+    website: Website
+    article: Article
+    summary: Summary
+    summary_large_image: Summary with large image
+    app: App
+    player: Player

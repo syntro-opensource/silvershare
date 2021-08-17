@@ -1,0 +1,42 @@
+de:
+  Syntro\SilverShare\Extension\ShareSiteConfigExtension:
+    Tabtitle: Metadaten
+    OGImageTitle: Standard Vorschau-Bild
+    OGImageRight: Dieses Bild wird beim Teilen von Links angezeigt, wenn kein bestimmtes Bild auf einer Seite definiert wurde.
+    SOCIALMEDIAMETA: Social Media Meta
+    TwitterSiteTitle: Twitter Seite
+    TwitterSiteRight: Der Name Ihrer Twitter-Seite.
+    TwitterSitePlaceholder: "@deinefirma"
+  Syntro\SilverShare\Extension\ShareExtension:
+    Sharing: Teilen
+    INFOTEXT: >
+      Diese Optionen ermöglichen dir einzustellen, wie eine Seite oder ein Objekt
+      dargestellt wird, wenn du einen Link dazu teilst. Sie haben keinen direkten
+      Einfluss auf SEO. </br> Du kannst den
+      <a href="https://developers.facebook.com/tools/debug/" target="__blank">
+      Facebook sharing Debugger</a> nutzen, um zu testen wie diese Seite
+      dargestellt wird.
+    # Field titles
+    OGImageTitle: Geteiltes Bild
+    OGTitleTitle: Geteilter Titel
+    OGDescriptionTitle: Geteilte Beschreibung
+    OGTypeTitle: Geteilter Typ
+    TwitterTypeTitle: Twitter Typ
+    ExtraMetaTagsToggle: Zusätzliche Metatags
+    RENDERTYPES: Render Typen
+    # field descriptions
+    OGTitleRight: Der Titel, der angezeigt wird, wenn du diese Seite teilst.
+    OGDescriptionRight: Die Zusammenfassung, welche angezeigt wird, wenn du diese Seite teilst.
+    OGTypeRight: Der Typ, der zur Anzeige dieser Seite verwendet wird, wenn sie geteilt wird. In den meisten Fällen sollte das "Webseite" sein.
+    TwitterTypeRight: Der Typ, der zur Anzeige dieser Seite verwendet wird, wenn sie auf Twitter geteilt wird. In den meisten Fällen sollte das "Zusammenfassung" sein.
+    OGImageRight: Das Bild, welches angezeigt wird, wenn du diese Seite teilst.
+    # fallback indication
+    NODEAFAULTIMAGE: Es ist kein Bild eingestellt. Das bedeutet, dass ein Crawler ein zufälliges Bild (meist das erste erscheinende) auswählen könnte.
+    DEFAULTIMAGE: Es wird das in den Seiteneinstellungen eingestellte Standardbild verwendet.
+    # type translations
+    website: Webseite
+    article: Artikel
+    summary: Zusammenfassung
+    summary_large_image: Zusammenfassung mit grossem Bild
+    app: App
+    player: Player
