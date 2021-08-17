@@ -117,8 +117,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
 
         $owner = $this->owner;
         // stop when we are dealing with a redirector or virtual page
-        if (
-            $owner instanceof RedirectorPage ||
+        if ($owner instanceof RedirectorPage ||
             $owner instanceof VirtualPage ||
             $owner instanceof ErrorPage
         ) {
@@ -126,7 +125,6 @@ class ShareExtension extends DataExtension implements SharingMetaSource
         }
 
         if ($owner->config()->sharing_allow_user_overwrite) {
-
             $OGTypes = [];
             $availableOGTypes = $owner->config()->sharing_available_og_types ?? [];
             foreach ($availableOGTypes as $value) {
@@ -189,7 +187,6 @@ class ShareExtension extends DataExtension implements SharingMetaSource
                 } else {
                     $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0\">{$alertMessage}</div>");
                 }
-
             }
 
 
@@ -335,8 +332,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
             if ($fallback instanceof Image) {
                 return  $fallback;
             }
-            if (
-                ($fallback instanceof ManyManyList ||
+            if (($fallback instanceof ManyManyList ||
                 $fallback instanceof ManyManyThroughList) &&
                 $fallback->count() > 0
             ) {

@@ -6,6 +6,8 @@ use SilverStripe\Assets\Image;
 
 /**
  * Establishes the necessary functionality to provide sharing information
+ *
+ * @author Matthias Leutenegger <hello@syntro.ch>
  */
 interface SharingMetaSource
 {
@@ -30,14 +32,14 @@ interface SharingMetaSource
      *
      * @return string
      */
-     public function sharedOGTitle();
+    public function sharedOGTitle();
 
      /**
       * sharedOGDescription - returns a description which is used when shared
       *
       * @return string
       */
-     public function sharedOGDescription();
+    public function sharedOGDescription();
 
     /**
      * sharedImage - returns an Image that should be displayed when shared
@@ -52,5 +54,4 @@ interface SharingMetaSource
      * @return string
      */
     public function sharedURL();
-
 }

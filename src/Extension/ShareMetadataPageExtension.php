@@ -123,7 +123,7 @@ class ShareMetadataPageExtension extends DataExtension
     {
         $source = $this->getSharingSource();
         $ogType = $source->sharedOGType() ? $source->sharedOGType() : self::DEFAULT_OGTYPE;
-        return $this->createMetaTag('og:type',$ogType);
+        return $this->createMetaTag('og:type', $ogType);
     }
 
     /**
@@ -135,7 +135,7 @@ class ShareMetadataPageExtension extends DataExtension
     {
         $source = $this->getSharingSource();
         $twType = $source->sharedTwitterType() ? $source->sharedTwitterType() : self::DEFAULT_TWITTERTYPE;
-        return $this->createMetaTag('twitter:card',$twType, 'name');
+        return $this->createMetaTag('twitter:card', $twType, 'name');
     }
 
     /**
@@ -152,10 +152,10 @@ class ShareMetadataPageExtension extends DataExtension
         }
         $tags = [];
         if ($image && $image->ID != 0) {
-            $tags['og:image'] = $this->createMetaTag('og:image',$image->getAbsoluteURL());
-            $tags['og:image:width'] = $this->createMetaTag('og:image:width',$image->getWidth());
-            $tags['og:image:heigth'] = $this->createMetaTag('og:image:heigth',$image->getHeight());
-            $tags['og:image:alt'] = $this->createMetaTag('og:image:alt',$image->getTitle());
+            $tags['og:image'] = $this->createMetaTag('og:image', $image->getAbsoluteURL());
+            $tags['og:image:width'] = $this->createMetaTag('og:image:width', $image->getWidth());
+            $tags['og:image:heigth'] = $this->createMetaTag('og:image:heigth', $image->getHeight());
+            $tags['og:image:alt'] = $this->createMetaTag('og:image:alt', $image->getTitle());
         }
         return $tags;
     }
@@ -169,7 +169,7 @@ class ShareMetadataPageExtension extends DataExtension
     {
         $source = $this->getSharingSource();
         $ogTitle = $source->sharedOGTitle();
-        return $ogTitle ? $this->createMetaTag('og:title',$ogTitle) : null;
+        return $ogTitle ? $this->createMetaTag('og:title', $ogTitle) : null;
     }
 
     /**
@@ -181,7 +181,7 @@ class ShareMetadataPageExtension extends DataExtension
     {
         $source = $this->getSharingSource();
         $ogDescription = $source->sharedOGDescription();
-        return $ogDescription ? $this->createMetaTag('og:description',$ogDescription) : null;
+        return $ogDescription ? $this->createMetaTag('og:description', $ogDescription) : null;
     }
 
     /**
@@ -193,16 +193,16 @@ class ShareMetadataPageExtension extends DataExtension
     {
         $source = $this->getSharingSource();
         $url = $source->sharedURL();
-        return $url ? $this->createMetaTag('og:url',$url) : null;
+        return $url ? $this->createMetaTag('og:url', $url) : null;
     }
 
 
     /**
      * createMetaTag - creates a tag to feed to the HTML::createTag function
      *
-     * @param  string $property             the property
-     * @param  string $content              the content field of the tag (not the content of the tag!)
-     * @param  string $propKey = 'property' the name of the field holding the property
+     * @param  string $property the property
+     * @param  string $content  the content field of the tag (not the content of the tag!)
+     * @param  string $propKey  = 'property' the name of the field holding the property
      * @return array
      */
     public function createMetaTag($property, $content, $propKey = 'property')
