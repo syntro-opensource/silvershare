@@ -4,7 +4,7 @@ namespace Syntro\SilverShare\Extension;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\SiteTree;
-use Syntro\Metainfo\Interfaces\SharingMetaSource;
+use Syntro\SilverShare\Interfaces\SharingMetaSource;
 
 /**
  * The MetadataPageExtension applies the necessary functionality
@@ -43,12 +43,11 @@ class ShareMetadataPageExtension extends DataExtension
      * getters
      *
      * @param  SiteTree|SharingMetaSource $source the object that provides the metadata
-     * @return SiteTree
+     * @return void
      */
     public function setSharingSource($source)
     {
         $this->source = $source;
-        return $this;
     }
 
     /**
