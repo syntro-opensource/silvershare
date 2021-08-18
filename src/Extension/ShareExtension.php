@@ -1,9 +1,11 @@
 <?php
 namespace Syntro\SilverShare\Extension;
 
+use SilverStripe\Core\ClassInfo;
 use SilverStripe\View\SSViewer;
 use SilverStripe\Forms\HeaderField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
+use SilverStripe\ORM\FieldType\DBText;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\ORM\ManyManyList;
@@ -16,7 +18,6 @@ use SilverStripe\Forms\TextareaField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
-use SilverStripe\Core\ClassInfo;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\RedirectorPage;
 use SilverStripe\CMS\Model\VirtualPage;
@@ -210,21 +211,6 @@ class ShareExtension extends DataExtension implements SharingMetaSource
                 $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$fallbackImage->Thumbnail(60,60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
 
             }
-
-            // if (!$owner->OGImageID && !$this->getFallbackImage()) {
-            //     $alertColor = SiteConfig::current_site_config()->OGDefaultImageID
-            //         ? 'info'
-            //         : 'danger';
-            //     $alertMessage = SiteConfig::current_site_config()->OGDefaultImageID
-            //         ? _t(__CLASS__ . '.DEFAULTIMAGE', 'The default image set in the siteconfig will be used.')
-            //         : _t(__CLASS__ . '.NODEAFAULTIMAGE', 'No Image is set. This means, a crawler might select one at random.');
-            //     $defaultImage = SiteConfig::current_site_config()->OGDefaultImage;
-            //     if ($defaultImage && $defaultImage->isInDB()) {
-            //         $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$defaultImage->Thumbnail(60,60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
-            //     } else {
-            //         $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0\">{$alertMessage}</div>");
-            //     }
-            // }
         }
 
         return $fields;
@@ -330,10 +316,57 @@ class ShareExtension extends DataExtension implements SharingMetaSource
     {
         $owner = $this->getOwner();
         $fallbackField = $owner->config()->sharing_fallback_description;
-        if ($fallbackField) {
-            return (string) $owner->obj($fallbackField);
+
+        if ($fallbackField && is_array($fallbackField)) {
+            foreach ($fallbackField as $field) {
+                $string = $this->getDescriptionFromField($field);
+                if ($string && $string != '') {
+                    return $string;
+                }
+            }
+        } elseif ($fallbackField) {
+            // return (string) $owner->obj($fallbackField);
+            $string = $this->getDescriptionFromField($fallbackField);
+            if ($string && $string != '') {
+                return $string;
+            }
         }
         return null;
+    }
+
+    /**
+     * getDescriptionFromField - tries to find a string from a given field or
+     * function on the owner. You can give a method name or a field on the owner
+     * which will then be translated to a summary. If the method or field does
+     * return a string, it is returned unchanged, all other types are shortened
+     * using DBHTMLText->Summary().
+     *
+     * @param  string $fieldName the name of the field to get
+     * @return string|null
+     */
+    public function getDescriptionFromField($fieldName)
+    {
+        $owner = $this->getOwner();
+        $field = null;
+        if (ClassInfo::hasMethod($owner, $fieldName)) {
+            $field = $owner->__call($fieldName, []);
+        } else {
+            $field = $owner->obj($fieldName);
+        }
+
+        if (is_string($field)) {
+            return $field;
+        }
+
+        if ($field instanceof DBHTMLText || $field instanceof DBText) {
+            return $field->LimitSentences();
+        }
+
+        if (ClassInfo::hasMethod($field, 'forTemplate')) {
+            return DBHTMLText::create()->setValue($field->forTemplate())->Summary();
+        }
+
+        return DBHTMLText::create()->setValue((string) $field)->Summary();;
     }
 
     /**

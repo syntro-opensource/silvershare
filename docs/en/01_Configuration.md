@@ -118,8 +118,16 @@ SilverStripe\CMS\Model\SiteTree:
   sharing_fallback_title: Title
   sharing_fallback_description: MetaDescription
 ```
-> **Note**: Currently, the module only supports fields, but we plan to extend
-> this to also include functions and even relations.
+The `sharing_fallback_description` config can also take an array, allowing you to
+fall back to multiple fields. Any fields or method that do not directly return
+a string will first be shortened using DBHTMLTexts `Summary()` method.
+```yaml
+Article:
+  sharing_fallback_description:
+     - Summary
+     - Content
+     - getSummary # <- this will call the $article->getSummary() method
+```
 
 ## Render Types
 By default, only these types are able to be chosen by the editor:
