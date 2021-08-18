@@ -272,7 +272,9 @@ class ShareExtension extends DataExtension implements SharingMetaSource
      */
     public function sharedImage()
     {
-        return $this->getOwner()->OGImage ?? $this->getFallbackImage();
+        return $this->getOwner()->OGImage->isInDB()
+            ? $this->getOwner()->OGImage
+            : $this->getFallbackImage();
     }
 
     /**
