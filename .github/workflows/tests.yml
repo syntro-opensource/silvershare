@@ -9,11 +9,7 @@ on:
       - .gitattributes
       - .gitignore
       - .htaccess
-      - CHANGELOG.md
-      - code-of-conduct.md
-      - CONTRIBUTING.md
-      - LICENSE.md
-      - README.md
+      - '**.md'
     branches:
       - develop
       - master
@@ -26,11 +22,7 @@ on:
       - .gitattributes
       - .gitignore
       - .htaccess
-      - CHANGELOG.md
-      - code-of-conduct.md
-      - CONTRIBUTING.md
-      - LICENSE.md
-      - README.md
+      - '**.md'
     branches:
       - develop
       - master
