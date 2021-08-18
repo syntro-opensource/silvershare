@@ -33,6 +33,7 @@ de:
     # fallback indication
     NODEAFAULTIMAGE: Es ist kein Bild eingestellt. Das bedeutet, dass ein Crawler ein zufälliges Bild (meist das erste erscheinende) auswählen könnte.
     DEFAULTIMAGE: Es wird das in den Seiteneinstellungen eingestellte Standardbild verwendet.
+    FALLBACKIMAGE: Es wird das vordefinierte Bild dieser Seite oder dieses Objekts verwendet.
     # type translations
     website: Webseite
     article: Artikel

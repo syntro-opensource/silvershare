@@ -116,6 +116,13 @@ class ShareExtension extends DataExtension implements SharingMetaSource
     {
 
         $owner = $this->owner;
+        $fields->removeByName([
+            'OGType',
+            'OGTitle',
+            'OGDescription',
+            'TwitterType',
+            'OGImage',
+        ]);
         // stop when we are dealing with a redirector or virtual page
         if ($owner instanceof RedirectorPage ||
             $owner instanceof VirtualPage ||
@@ -139,14 +146,9 @@ class ShareExtension extends DataExtension implements SharingMetaSource
                 "Root.SocialSharing",
                 $owner->fieldLabel('Root.SocialSharing')
             );
-            $ogInfoText = _t(__CLASS__ . '.INFOTEXT', '{info}');
-            $fields->addFieldsToTab(
-                'Root.SocialSharing',
-                [
-                    $ogInfotext = LiteralField::create('info', "<div class=\"alert alert-light\">{$ogInfoText}</div>"),
-                    $ogImage = UploadField::create('OGImage', _t(__CLASS__ . '.OGImageTitle', 'OpenGraph Image')),
-                    $ogTitle = TextField::create('OGTitle', _t(__CLASS__ . '.OGTitleTitle', 'OpenGraph Title')),
-                    $ogDescription = TextareaField::create('OGDescription', _t(__CLASS__ . '.OGDescriptionTitle', 'OpenGraph Description')),
+            if (!empty($TwitterTypes) || !empty($OGTypes)) {
+                $fields->addFieldToTab(
+                    'Root.SocialSharing',
                     $toggleTypesField = ToggleCompositeField::create(
                         'Types',
                         _t(
@@ -158,8 +160,22 @@ class ShareExtension extends DataExtension implements SharingMetaSource
                             $twitterType = DropdownField::create('TwitterType', _t(__CLASS__ . '.TwitterTypeTitle', 'Twitter Type'), $TwitterTypes)
                         ]
                     )
-                ]
+                );
+            }
+
+            $ogInfoText = _t(__CLASS__ . '.INFOTEXT', '{info}');
+            $fields->addFieldsToTab(
+                'Root.SocialSharing',
+                [
+                    $ogInfotext = LiteralField::create('info', "<div class=\"alert alert-light\">{$ogInfoText}</div>"),
+                    $ogImage = UploadField::create('OGImage', _t(__CLASS__ . '.OGImageTitle', 'OpenGraph Image')),
+                    $ogTitle = TextField::create('OGTitle', _t(__CLASS__ . '.OGTitleTitle', 'OpenGraph Title')),
+                    $ogDescription = TextareaField::create('OGDescription', _t(__CLASS__ . '.OGDescriptionTitle', 'OpenGraph Description')),
+
+                ],
+                'Types'
             );
+
 
             $ogTitle
                 ->setRightTitle(_t(__CLASS__ . '.OGTitleRight', 'The title which is shown when you share this page.'))
@@ -174,40 +190,41 @@ class ShareExtension extends DataExtension implements SharingMetaSource
 
             // add some dialog to indicate image
             $ogImage->setRightTitle(_t(__CLASS__ . '.OGImageRight', 'The image which is shown when you share this page.'));
-            if (!$owner->OGImageID && ! $this->getFallbackImage()) {
-                $alertColor = SiteConfig::current_site_config()->OGDefaultImageID
-                    ? 'info'
-                    : 'danger';
-                $alertMessage = SiteConfig::current_site_config()->OGDefaultImageID
-                    ? _t(__CLASS__ . '.DEFAULTIMAGE', 'The default image set in the siteconfig will be used.')
-                    : _t(__CLASS__ . '.NODEAFAULTIMAGE', 'No Image is set. This means, a crawler might select one at random.');
+
+            if (!$owner->OGImageID && !$this->getFallbackImage() && !SiteConfig::current_site_config()->OGDefaultImageID) {
+                // We have no image set
+                $alertMessage =  _t(__CLASS__ . '.NODEAFAULTIMAGE', 'No Image is set. This means, a crawler might select one at random.');
+                $alertColor = 'danger';
+                $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0\">{$alertMessage}</div>");
+            } elseif (!$owner->OGImageID && !$this->getFallbackImage() && SiteConfig::current_site_config()->OGDefaultImageID) {
+                // We have a default image set
+                $alertMessage =  _t(__CLASS__ . '.DEFAULTIMAGE', 'The default image set in the siteconfig will be used.');
+                $alertColor = 'info';
                 $defaultImage = SiteConfig::current_site_config()->OGDefaultImage;
-                if ($defaultImage && $defaultImage->isInDB()) {
-                    $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$defaultImage->Thumbnail(60,60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
-                } else {
-                    $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0\">{$alertMessage}</div>");
-                }
+                $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$defaultImage->Thumbnail(60,60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
+            } elseif (!$owner->OGImageID && $this->getFallbackImage()) {
+                // We have a fallback image
+                $alertMessage =  _t(__CLASS__ . '.FALLBACKIMAGE', 'The default image for this page or item will be used.');
+                $alertColor = 'info';
+                $fallbackImage = $this->getFallbackImage();
+                $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$fallbackImage->Thumbnail(60,60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
+
             }
 
-
-            // $OgImageRightTitle = _t(__CLASS__ . '.OGImageRight', 'The image which is shown when you share this page.');
-            // if (!$owner->OGImageID && !SiteConfig::current_site_config()->OGDefaultImageID) {
-            //     $ogImage->setRightTitle(
-            //         $OgImageRightTitle . ' ' . _t(__CLASS__ . '.NODEAFAULTIMAGE', 'No default Image is set. This means, a crawler might select one at random.')
-            //     );
-            // } elseif (!$owner->OGImageID && SiteConfig::current_site_config()->OGDefaultImageID) {
-            //     $ogImage->setRightTitle(
-            //         $OgImageRightTitle . ' ' . _t(__CLASS__ . '.DEFAULTIMAGE', 'The default image set in the siteconfig will be used.')
-            //     );
+            // if (!$owner->OGImageID && !$this->getFallbackImage()) {
+            //     $alertColor = SiteConfig::current_site_config()->OGDefaultImageID
+            //         ? 'info'
+            //         : 'danger';
+            //     $alertMessage = SiteConfig::current_site_config()->OGDefaultImageID
+            //         ? _t(__CLASS__ . '.DEFAULTIMAGE', 'The default image set in the siteconfig will be used.')
+            //         : _t(__CLASS__ . '.NODEAFAULTIMAGE', 'No Image is set. This means, a crawler might select one at random.');
+            //     $defaultImage = SiteConfig::current_site_config()->OGDefaultImage;
+            //     if ($defaultImage && $defaultImage->isInDB()) {
+            //         $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$defaultImage->Thumbnail(60,60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
+            //     } else {
+            //         $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0\">{$alertMessage}</div>");
+            //     }
             // }
-        } else {
-            $fields->removeByName([
-                'OGType',
-                'OGTitle',
-                'OGDescription',
-                'TwitterType',
-                'OGImage',
-            ]);
         }
 
         return $fields;

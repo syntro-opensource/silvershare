@@ -31,6 +31,7 @@ en:
     # fallback indication
     NODEAFAULTIMAGE: No image is set. This means, a crawler might select one at random.
     DEFAULTIMAGE: The default image set in the siteconfig will be used.
+    FALLBACKIMAGE: The default image for this page or item will be used.
     # type translations
     website: Website
     article: Article
