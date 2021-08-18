@@ -28,4 +28,4 @@ Thats it.
 
 
 ## Documentation
-<!-- * [Configuration](docs/en/01_Title.md) -->
+* [Configuration](docs/en/01_Configuration.md)
