@@ -4,20 +4,21 @@ Before:
   - 'tractorcow/silverstripe-fluent'
 ---
 SilverStripe\CMS\Model\SiteTree:
-    # metadata: '%Syntro\SeoMetadata'
-    # sharing_fallback_image: Image
-    sharing_fallback_title: Title
-    sharing_fallback_description: MetaDescription
-    sharing_allow_user_overwrite: true
-    sharing_available_og_types:
-      - website
-      - article
-    sharing_available_twitter_types:
-      - summary
-      - summary_large_image
-    extensions:
-      - Syntro\SilverShare\Extension\ShareExtension
-      - Syntro\SilverShare\Extension\ShareMetadataPageExtension
+  sharing_fallback_title: Title
+  sharing_fallback_description:
+    - MetaDescription
+    - Content
+    - ElementalArea
+  sharing_allow_user_overwrite: true
+  sharing_available_og_types:
+    - website
+    - article
+  sharing_available_twitter_types:
+    - summary
+    - summary_large_image
+  extensions:
+    - Syntro\SilverShare\Extension\ShareExtension
+    - Syntro\SilverShare\Extension\ShareMetadataPageExtension
 Silverstripe\SiteConfig\SiteConfig:
-    extensions:
-        - Syntro\SilverShare\Extension\ShareSiteConfigExtension
+  extensions:
+    - Syntro\SilverShare\Extension\ShareSiteConfigExtension
