@@ -162,6 +162,10 @@ class ShareExtension extends DataExtension implements SharingMetaSource
                         ]
                     )
                 );
+                $ogType
+                    ->setRightTitle(_t(__CLASS__ . '.OGTypeRight', 'The type which is used to display this page when shared. Most of the time, you want this to be "website"'));
+                $twitterType
+                    ->setRightTitle(_t(__CLASS__ . '.TwitterTypeRight', 'The type which is used to display this page when shared on Twitter. Most of the time, you want this to be "summary"'));
             }
 
             $ogInfoText = _t(__CLASS__ . '.INFOTEXT', '{info}');
@@ -184,10 +188,6 @@ class ShareExtension extends DataExtension implements SharingMetaSource
             $ogDescription
                 ->setAttribute('placeholder', $this->getFallbackDescription())
                 ->setRightTitle(_t(__CLASS__ . '.OGDescriptionRight', 'The summary which is shown when you share this page.'));
-            $ogType
-                ->setRightTitle(_t(__CLASS__ . '.OGTypeRight', 'The type which is used to display this page when shared. Most of the time, you want this to be "website"'));
-            $twitterType
-                ->setRightTitle(_t(__CLASS__ . '.TwitterTypeRight', 'The type which is used to display this page when shared on Twitter. Most of the time, you want this to be "summary"'));
 
             // add some dialog to indicate image
             $ogImage->setRightTitle(_t(__CLASS__ . '.OGImageRight', 'The image which is shown when you share this page.'));
@@ -209,7 +209,6 @@ class ShareExtension extends DataExtension implements SharingMetaSource
                 $alertColor = 'info';
                 $fallbackImage = $this->getFallbackImage();
                 $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$fallbackImage->Thumbnail(60,60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
-
             }
         }
 
@@ -366,14 +365,15 @@ class ShareExtension extends DataExtension implements SharingMetaSource
             return DBHTMLText::create()->setValue($field->forTemplate())->Summary();
         }
 
-        return DBHTMLText::create()->setValue((string) $field)->Summary();;
+        return DBHTMLText::create()->setValue((string) $field)->Summary();
+        ;
     }
 
     /**
      * getFallbackImage - This returns a fallback image, based on the
      * sharing_fallback_image config of the applied object
      *
-     * @return string|null
+     * @return Image|null
      */
     public function getFallbackImage()
     {
@@ -388,7 +388,11 @@ class ShareExtension extends DataExtension implements SharingMetaSource
                 $fallback instanceof ManyManyThroughList) &&
                 $fallback->count() > 0
             ) {
-                return $fallback->first();
+                $image = $fallback->first();
+                if ($image instanceof Image) {
+                    return  $image;
+                }
+                return null;
             }
         }
         return null;
