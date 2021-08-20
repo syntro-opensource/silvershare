@@ -7,8 +7,8 @@ SilverStripe\CMS\Model\SiteTree:
   sharing_fallback_title: Title
   sharing_fallback_description:
     - MetaDescription
-    - Content
     - ElementalArea
+    - Content
   sharing_allow_user_overwrite: true
   sharing_available_og_types:
     - website
