@@ -254,7 +254,12 @@ class ShareExtension extends DataExtension implements SharingMetaSource
      */
     public function sharedOGTitle()
     {
-        return $this->getOwner()->OGTitle ?? $this->getFallbackTitle();
+        $owner = $this->getOwner();
+        if (!is_null($owner->OGTitle) && (string) $owner->OGTitle != '') {
+            return $owner->OGTitle;
+        } else {
+            return $this->getFallbackTitle();
+        }
     }
 
     /**
@@ -300,7 +305,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
         $owner = $this->getOwner();
         $fallbackField = $owner->config()->sharing_fallback_title;
         if ($fallbackField) {
-            return (string) $owner->obj($fallbackField);
+            return $this->getDescriptionFromField($fallbackField);
         }
         return null;
     }

@@ -34,6 +34,17 @@ class ShareMetadataPageExtensionTest extends SapphireTest
         }
     }
 
+    public function testMetaComponents()
+    {
+        $sitetree = SiteTree::create();
+
+        $metatags = $sitetree->MetaComponents();
+        $tagnames = array_keys($metatags);
+        $this->assertContains('og:name', $tagnames);
+        $this->assertContains('og:type', $tagnames);
+        $this->assertContains('twitter:card', $tagnames);
+    }
+
     /**
      * testGetSharingSource
      *
@@ -95,11 +106,14 @@ class ShareMetadataPageExtensionTest extends SapphireTest
      */
     public function testProvideTwitterTag()
     {
+        $sitetree = SiteTree::create();
+        // assert null if no data
+        $this->assertNull($sitetree->provideTwitterSiteTag());
+        // add data
         $testTitle = '@twitter';
         $config = SiteConfig::current_site_config();
         $config->TwitterSite = $testTitle;
         $config->write();
-        $sitetree = SiteTree::create();
         $tag = $sitetree->provideTwitterSiteTag();
         $this->assertEquals('meta', $tag['tag']);
         $this->assertEquals('twitter:site', $tag['attributes']['name']);
@@ -163,9 +177,10 @@ class ShareMetadataPageExtensionTest extends SapphireTest
      */
     public function testProvideOGTitleTag()
     {
+        $sitetree = SiteTree::create();
+        // add data
         $testTitle = 'article';
         $sitetree = SiteTree::create();
-
         $sitetree->Title = $testTitle;
         $tag = $sitetree->provideOGTitleTag();
         $this->assertEquals('meta', $tag['tag']);
@@ -181,10 +196,13 @@ class ShareMetadataPageExtensionTest extends SapphireTest
      */
     public function testProvideOGDescriptionTag()
     {
-        $testTitle = 'Some description';
         $sitetree = SiteTree::create();
-
+        // assert null if no data
+        $this->assertNull($sitetree->provideOGDescriptionTag());
+        // add data
+        $testTitle = 'Some description';
         $sitetree->MetaDescription = $testTitle;
+        $sitetree->write();
         $tag = $sitetree->provideOGDescriptionTag();
         $this->assertEquals('meta', $tag['tag']);
         $this->assertEquals('og:description', $tag['attributes']['property']);
