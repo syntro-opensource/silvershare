@@ -34,6 +34,11 @@ class ShareMetadataPageExtensionTest extends SapphireTest
         }
     }
 
+    /**
+     * testMetaComponents
+     *
+     * @return void
+     */
     public function testMetaComponents()
     {
         $sitetree = SiteTree::create();
