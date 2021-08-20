@@ -38,6 +38,11 @@ class SharedObject extends DataObject implements TestOnly
         ShareExtension::class,
     ];
 
+    /**
+     * getDefaultDescription
+     *
+     * @return string
+     */
     public function getDefaultDescription()
     {
         return 'someString';
