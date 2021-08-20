@@ -30,7 +30,7 @@ class ShareMetadataPageExtensionTest extends SapphireTest
         parent::setUp();
         $config = DataObject::get_one(SiteConfig::class);
         if (!$config) {
-            self::make_site_config();
+            SiteConfig::make_site_config();
         }
     }
 
