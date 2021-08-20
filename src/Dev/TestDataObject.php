@@ -15,6 +15,10 @@ class SharedObject extends DataObject implements TestOnly
 {
 
     private static $sharing_allow_user_overwrite = true;
+    private static $sharing_fallback_description = [
+        'Description',
+        'getDefaultDescription'
+    ];
 
     /**
      * Database fields
@@ -33,4 +37,9 @@ class SharedObject extends DataObject implements TestOnly
     private static $extensions = [
         ShareExtension::class,
     ];
+
+    public function getDefaultDescription()
+    {
+        return 'someString';
+    }
 }

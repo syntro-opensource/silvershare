@@ -48,4 +48,20 @@ class ShareExtensionTest extends SapphireTest
         $this->assertNotContains('OGType', $fields);
         $this->assertNotContains('TwitterType', $fields);
     }
+
+    /**
+     * testDescriptionFallback
+     *
+     * @return void
+     */
+    public function testDescriptionFallback()
+    {
+        $object = SharedObject::create();
+        // without description, falls back to function
+        $this->assertEquals('someString', $object->sharedOGDescription());
+
+        // with description, the description is taken
+        $object->Description = 'Some Description';
+        $this->assertEquals('Some Description', $object->sharedOGDescription());
+    }
 }
