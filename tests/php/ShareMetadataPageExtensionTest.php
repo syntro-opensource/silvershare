@@ -30,7 +30,12 @@ class ShareMetadataPageExtensionTest extends SapphireTest
         $this->assertEquals($sitetreeNew->ID, $source->ID);
     }
 
-    public function testCreateMetaTag($value='')
+    /**
+     * testCreateMetaTag
+     *
+     * @return void
+     */
+    public function testCreateMetaTag()
     {
         $sitetree = SiteTree::create();
         $tag = $sitetree->createMetaTag('property', 'content', 'propKey');
