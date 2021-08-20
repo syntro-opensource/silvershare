@@ -67,19 +67,19 @@ class ShareMetadataPageExtension extends DataExtension
         $sharingTags['twitter:site'] = $this->provideTwitterSiteTag();
 
         // add type tags
-        $sharingTags['og:type'] = $this->provideOGType();
-        $sharingTags['twitter:card'] = $this->provideTwitterType();
+        $sharingTags['og:type'] = $this->provideOGTypeTag();
+        $sharingTags['twitter:card'] = $this->provideTwitterTypeTag();
 
         // add the image tags
         $imageTags = $this->provideImageTags();
         $sharingTags = array_merge($sharingTags, $imageTags);
 
         // add the title and description tags
-        $sharingTags['og:title'] = $this->provideTitleTag();
-        $sharingTags['og:description'] = $this->provideDescriptionTag();
+        $sharingTags['og:title'] = $this->provideOGTitleTag();
+        $sharingTags['og:description'] = $this->provideOGDescriptionTag();
 
         // add the url tag
-        $sharingTags['og:url'] = $this->provideURLTag();
+        $sharingTags['og:url'] = $this->provideOGURLTag();
 
         $sharingTags = array_filter($sharingTags);
         $tags = array_merge($tags, $sharingTags);
@@ -114,11 +114,11 @@ class ShareMetadataPageExtension extends DataExtension
     }
 
     /**
-     * provideOGType - returns the OG type tag
+     * provideOGTypeTag - returns the OG type tag
      *
      * @return array
      */
-    public function provideOGType()
+    public function provideOGTypeTag()
     {
         $source = $this->getSharingSource();
         $ogType = $source->sharedOGType() ? $source->sharedOGType() : self::DEFAULT_OGTYPE;
@@ -126,11 +126,11 @@ class ShareMetadataPageExtension extends DataExtension
     }
 
     /**
-     * provideTwitterType - returns the twitter type tag
+     * provideTwitterTypeTag - returns the twitter type tag
      *
      * @return array
      */
-    public function provideTwitterType()
+    public function provideTwitterTypeTag()
     {
         $source = $this->getSharingSource();
         $twType = $source->sharedTwitterType() ? $source->sharedTwitterType() : self::DEFAULT_TWITTERTYPE;
@@ -160,11 +160,11 @@ class ShareMetadataPageExtension extends DataExtension
     }
 
     /**
-     * provideTitleTag - returns the title tag if applicable
+     * provideOGTitleTag - returns the title tag if applicable
      *
      * @return array|null
      */
-    public function provideTitleTag()
+    public function provideOGTitleTag()
     {
         $source = $this->getSharingSource();
         $ogTitle = $source->sharedOGTitle();
@@ -172,11 +172,11 @@ class ShareMetadataPageExtension extends DataExtension
     }
 
     /**
-     * provideDescriptionTag - returns the description tag if applicable
+     * provideOGDescriptionTag - returns the description tag if applicable
      *
      * @return array|null
      */
-    public function provideDescriptionTag()
+    public function provideOGDescriptionTag()
     {
         $source = $this->getSharingSource();
         $ogDescription = $source->sharedOGDescription();
@@ -184,11 +184,11 @@ class ShareMetadataPageExtension extends DataExtension
     }
 
     /**
-     * provideURLTag - returns the url tag if applicable
+     * provideOGURLTag - returns the url tag if applicable
      *
      * @return array|null
      */
-    public function provideURLTag()
+    public function provideOGURLTag()
     {
         $source = $this->getSharingSource();
         $url = $source->sharedURL();
