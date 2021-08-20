@@ -2,6 +2,7 @@
 
 namespace Syntro\Silvershare\Tests;
 
+use SilverStripe\ORM\DataObject;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\CMS\Model\SiteTree;
@@ -13,6 +14,20 @@ use SilverStripe\CMS\Model\SiteTree;
  */
 class ShareMetadataPageExtensionTest extends SapphireTest
 {
+
+    /**
+     * setUp - add a siteconfig if necessary
+     *
+     * @return void
+     */
+    public function setUp()
+    {
+        parent::setUp();
+        $config = DataObject::get_one(SiteConfig::class);
+        if (!$config) {
+            self::make_site_config();
+        }
+    }
 
     /**
      * testGetSharingSource
