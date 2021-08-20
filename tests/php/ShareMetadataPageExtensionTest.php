@@ -14,6 +14,11 @@ use SilverStripe\CMS\Model\SiteTree;
  */
 class ShareMetadataPageExtensionTest extends SapphireTest
 {
+    /**
+     * Defines the fixture file to use for this test class
+     * @var string
+     */
+    protected static $fixture_file = './defaultfixture.yml';
 
     /**
      * setUp - add a siteconfig if necessary
