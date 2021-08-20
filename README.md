@@ -11,9 +11,9 @@ Silverstripe module simplifying the share experience for content editors.
 
 
 ## Introduction
-This provides a drop-in solution which allows content editors to see what information
-is used when a page or dataobject (which is used as a page) is shared on a
-socialmedia platform or any application which uses OpenGraph schema.
+This module provides a drop-in solution which allows content editors to see what
+information is used when a page or dataobject (which is used as a page) is
+shared on a socialmedia platform or any application which uses OpenGraph schema.
 
 Developers can apply the extension to dataobjects which are used as pages, enabling
 editors to control each shared link specifically
