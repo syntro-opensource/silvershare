@@ -63,5 +63,9 @@ class ShareExtensionTest extends SapphireTest
         // with description, the description is taken
         $object->Description = 'Some Description';
         $this->assertEquals('Some Description', $object->sharedOGDescription());
+
+        // if we only have a field set, we only return that
+        $object->config()->set('sharing_fallback_description', 'getDefaultDescription');
+        $this->assertEquals('someString', $object->sharedOGDescription());
     }
 }
