@@ -348,7 +348,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
         $owner = $this->getOwner();
         $field = null;
         if (ClassInfo::hasMethod($owner, $fieldName)) {
-            $field = $owner->__call($fieldName, []);
+            $field = $owner->$fieldName();
         } else {
             $field = $owner->obj($fieldName);
         }
