@@ -22,6 +22,7 @@ use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\RedirectorPage;
 use SilverStripe\CMS\Model\VirtualPage;
 use SilverStripe\ErrorPage\ErrorPage;
+use SilverStripe\View\Requirements;
 use Syntro\SilverShare\Interfaces\SharingMetaSource;
 use Page;
 
@@ -188,26 +189,24 @@ class ShareExtension extends DataExtension implements SharingMetaSource
             $ogDescription
                 ->setAttribute('placeholder', $this->getFallbackDescription())
                 ->setRightTitle(_t(__CLASS__ . '.OGDescriptionRight', 'The summary which is shown when you share this page.'));
-
             // add some dialog to indicate image
             $ogImage->setRightTitle(_t(__CLASS__ . '.OGImageRight', 'The image which is shown when you share this page.'));
-
-            if (!$owner->OGImageID && !$this->getFallbackImage() && !SiteConfig::current_site_config()->OGDefaultImageID) {
+            $fallbackImage = $this->getFallbackImage();
+            if (!$owner->OGImageID && !$fallbackImage && !SiteConfig::current_site_config()->OGDefaultImageID) {
                 // We have no image set
                 $alertMessage =  _t(__CLASS__ . '.NODEAFAULTIMAGE', 'No Image is set. This means, a crawler might select one at random.');
                 $alertColor = 'danger';
                 $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0\">{$alertMessage}</div>");
-            } elseif (!$owner->OGImageID && !$this->getFallbackImage() && SiteConfig::current_site_config()->OGDefaultImageID) {
+            } elseif (!$owner->OGImageID && !$fallbackImage && SiteConfig::current_site_config()->OGDefaultImageID) {
                 // We have a default image set
                 $alertMessage =  _t(__CLASS__ . '.DEFAULTIMAGE', 'The default image set in the siteconfig will be used.');
                 $alertColor = 'info';
                 $defaultImage = SiteConfig::current_site_config()->OGDefaultImage;
                 $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$defaultImage->ScaleHeight(60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
-            } elseif (!$owner->OGImageID && $this->getFallbackImage()) {
+            } elseif (!$owner->OGImageID && $fallbackImage) {
                 // We have a fallback image
                 $alertMessage =  _t(__CLASS__ . '.FALLBACKIMAGE', 'The default image for this page or item will be used.');
                 $alertColor = 'info';
-                $fallbackImage = $this->getFallbackImage();
                 $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$fallbackImage->ScaleHeight(60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
             }
         }
@@ -367,12 +366,16 @@ class ShareExtension extends DataExtension implements SharingMetaSource
         }
 
         if (ClassInfo::hasMethod($field, 'forTemplate')) {
-            return DBHTMLText::create()->setValue($field->forTemplate())->Summary();
+            Requirements::clear();
+            $string = DBHTMLText::create()->setValue((string) $field->forTemplate())->LimitSentences();
+            Requirements::restore();
+            return $string;
         }
 
-        return DBHTMLText::create()->setValue((string) $field)->Summary();
+        return DBHTMLText::create()->setValue((string) $field)->LimitSentences();
         ;
     }
+
 
     /**
      * getFallbackImage - This returns a fallback image, based on the
