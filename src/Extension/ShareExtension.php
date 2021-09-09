@@ -195,7 +195,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
             if (!$owner->OGImageID && !$fallbackImage && !SiteConfig::current_site_config()->OGDefaultImageID) {
                 // We have no image set
                 $alertMessage =  _t(__CLASS__ . '.NODEAFAULTIMAGE', 'No Image is set. This means, a crawler might select one at random.');
-                $alertColor = 'danger';
+                $alertColor = 'warning';
                 $ogImage->setDescription("<div class=\"alert alert-{$alertColor} mb-0\">{$alertMessage}</div>");
             } elseif (!$owner->OGImageID && !$fallbackImage && SiteConfig::current_site_config()->OGDefaultImageID) {
                 // We have a default image set
