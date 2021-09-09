@@ -389,7 +389,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
         $fallbackField = $owner->config()->sharing_fallback_image;
         if ($fallbackField) {
             $fallback = $owner->obj($fallbackField);
-            if ($fallback instanceof Image) {
+            if ($fallback instanceof Image && $fallback->isInDB()) {
                 return  $fallback;
             }
             if (($fallback instanceof ManyManyList ||
@@ -397,7 +397,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
                 $fallback->count() > 0
             ) {
                 $image = $fallback->first();
-                if ($image instanceof Image) {
+                if ($image instanceof Image && $image->isInDB()) {
                     return  $image;
                 }
                 return null;
