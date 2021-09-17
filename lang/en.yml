@@ -11,7 +11,7 @@ en:
     Sharing: Sharing
     INFOTEXT: >
       These options allow you to customize how this page or object is displayed
-       when you share a link. They do not directly influence SEO.  </br> You can
+       when you share a link. They do not directly influence SEO. You can
        use the <a href="https://developers.facebook.com/tools/debug/" target="__blank">
        Facebook Sharing Debugger</a>, to check how this page will be presented.
     # Field titles
