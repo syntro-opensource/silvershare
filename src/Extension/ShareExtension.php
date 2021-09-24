@@ -202,12 +202,12 @@ class ShareExtension extends DataExtension implements SharingMetaSource
                 $alertMessage =  _t(__CLASS__ . '.DEFAULTIMAGE', 'The default image set in the siteconfig will be used.');
                 $alertColor = 'light';
                 $defaultImage = SiteConfig::current_site_config()->OGDefaultImage;
-                $ogImage->setDescription("<div class=\"rounded shadow-sm border border-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$defaultImage->ScaleHeight(60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
+                $ogImage->setDescription("<div class=\"rounded shadow-sm bg-white border border-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$defaultImage->ScaleHeight(60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
             } elseif (!$owner->OGImageID && $fallbackImage) {
                 // We have a fallback image
                 $alertMessage =  _t(__CLASS__ . '.FALLBACKIMAGE', 'The default image for this page or item will be used.');
                 $alertColor = 'light';
-                $ogImage->setDescription("<div class=\"rounded shadow-sm border border-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$fallbackImage->ScaleHeight(60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
+                $ogImage->setDescription("<div class=\"rounded shadow-sm bg-white border border-{$alertColor} mb-0 d-flex align-items-center p-0\"><img class=\"rounded-left\" src=\"{$fallbackImage->ScaleHeight(60)->getURL()}\" /><div class=\"p-2\">{$alertMessage}</div></div>");
             }
         }
 
