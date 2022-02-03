@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+<a name="1.0.4"></a>
+## [1.0.4] - 2022-02-03
+### 🐞 Fixed
+- settting a default image does not overwrite fallback image ([#7](https://github.com/syntro-opensource/silvershare/issues/7))
+
+### 🗑 Removed
+- Tests (& support) for PHP 7.2 & 7.3
+
+
 <a name="1.0.3"></a>
 ## [1.0.3] - 2021-09-24
 ### 🐞 Fixed
@@ -39,7 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - packagist release
 
 
-[Unreleased]: https://github.com/syntro-opensource/silvershare/compare/1.0.3...HEAD
+[Unreleased]: https://github.com/syntro-opensource/silvershare/compare/1.0.4...HEAD
+[1.0.4]: https://github.com/syntro-opensource/silvershare/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/syntro-opensource/silvershare/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/syntro-opensource/silvershare/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/syntro-opensource/silvershare/compare/1.0.0...1.0.1
