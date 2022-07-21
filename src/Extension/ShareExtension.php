@@ -329,14 +329,14 @@ class ShareExtension extends DataExtension implements SharingMetaSource
         if ($fallbackField && is_array($fallbackField)) {
             foreach ($fallbackField as $field) {
                 $string = $this->getDescriptionFromField($field);
-                if ($string && $string != '') {
+                if ($string) {
                     return $string;
                 }
             }
         } elseif ($fallbackField) {
             // return (string) $owner->obj($fallbackField);
             $string = $this->getDescriptionFromField($fallbackField);
-            if ($string && $string != '') {
+            if ($string) {
                 return $string;
             }
         }
