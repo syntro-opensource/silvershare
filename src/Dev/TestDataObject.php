@@ -13,8 +13,14 @@ use Syntro\SilverShare\Extension\ShareExtension;
  */
 class SharedObject extends DataObject implements TestOnly
 {
-
+    /**
+     * @config
+     */
     private static $sharing_allow_user_overwrite = true;
+
+    /**
+     * @config
+     */
     private static $sharing_fallback_description = [
         'Description',
         'getDefaultDescription'
@@ -22,6 +28,7 @@ class SharedObject extends DataObject implements TestOnly
 
     /**
      * Database fields
+     * @config
      * @var array
      */
     private static $db = [
@@ -32,6 +39,7 @@ class SharedObject extends DataObject implements TestOnly
     /**
      * Defines extension names and parameters to be applied
      *  to this object upon construction.
+     * @config
      *  @var array
      */
     private static $extensions = [

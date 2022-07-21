@@ -16,6 +16,7 @@ class ShareSiteConfigExtension extends DataExtension
 {
     /**
      * Database fields
+     * @config
      * @var array
      */
     private static $db = [
@@ -24,6 +25,7 @@ class ShareSiteConfigExtension extends DataExtension
 
     /**
      * Has_one relationship
+     * @config
      * @var array
      */
     private static $has_one = [
@@ -32,6 +34,7 @@ class ShareSiteConfigExtension extends DataExtension
 
     /**
      * Relationship version ownership
+     * @config
      * @var array
      */
     private static $owns = [
@@ -40,6 +43,7 @@ class ShareSiteConfigExtension extends DataExtension
 
     /**
      * fields to be ignored by fluent
+     * @config
      * @var array
      */
     private static $field_exclude = [
