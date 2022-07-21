@@ -1,2 +1,2 @@
 includes:
-    - vendor/symbiote/silverstripe-phpstan/phpstan.neon
+    - vendor/syntro/silverstripe-phpstan/phpstan.neon

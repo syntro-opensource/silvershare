@@ -1,2 +1,2 @@
 includes:
-    - ../../symbiote/silverstripe-phpstan/phpstan.neon
+    - ../../syntro/silverstripe-phpstan/phpstan.neon
