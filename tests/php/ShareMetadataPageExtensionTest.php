@@ -25,7 +25,7 @@ class ShareMetadataPageExtensionTest extends SapphireTest
      *
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $config = DataObject::get_one(SiteConfig::class);

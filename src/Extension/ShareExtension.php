@@ -56,6 +56,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
 
     /**
      * Database fields
+     * @config
      * @var array
      */
     private static $db = [
@@ -67,6 +68,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
 
     /**
      * Has_one relationship
+     * @config
      * @var array
      */
     private static $has_one = [
@@ -75,6 +77,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
 
     /**
      * Relationship version ownership
+     * @config
      * @var array
      */
     private static $owns = [
@@ -83,6 +86,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
 
     /**
      * Add default values to database
+     * @config
      * @var array
      */
     private static $defaults = [
@@ -92,6 +96,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
 
     /**
      * fields to be translated by fluent
+     * @config
      * @var array
      */
     private static $field_include = [
@@ -101,6 +106,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
 
     /**
      * fields to be ignored by fluent
+     * @config
      * @var array
      */
     private static $field_exclude = [
@@ -323,14 +329,14 @@ class ShareExtension extends DataExtension implements SharingMetaSource
         if ($fallbackField && is_array($fallbackField)) {
             foreach ($fallbackField as $field) {
                 $string = $this->getDescriptionFromField($field);
-                if ($string && $string != '') {
+                if ($string) {
                     return $string;
                 }
             }
         } elseif ($fallbackField) {
             // return (string) $owner->obj($fallbackField);
             $string = $this->getDescriptionFromField($fallbackField);
-            if ($string && $string != '') {
+            if ($string) {
                 return $string;
             }
         }
