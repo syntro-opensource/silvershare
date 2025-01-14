@@ -14,7 +14,7 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0",
-        "syntro/silverstripe-phpstan": "^1",
+        "syntro/silverstripe-phpstan": "^5",
         "phpunit/phpunit": "^9.5"
     },
     "keywords": [
