@@ -7,7 +7,7 @@ use SilverStripe\Forms\HeaderField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\ORM\FieldType\DBText;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\ORM\ManyManyList;
 use SilverStripe\ORM\ManyManyThroughList;
 use SilverStripe\Forms\FieldList;
@@ -32,7 +32,7 @@ use Page;
  *
  * @author Matthias Leutenegger <hello@syntro.ch>
  */
-class ShareExtension extends DataExtension implements SharingMetaSource
+class ShareExtension extends Extension implements SharingMetaSource
 {
     // /**
     //  * @config

@@ -1,7 +1,7 @@
 <?php
 namespace Syntro\SilverShare\Extension;
 
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\SiteTree;
 use Syntro\SilverShare\Interfaces\SharingMetaSource;
@@ -14,7 +14,7 @@ use Syntro\SilverShare\Interfaces\SharingMetaSource;
  *
  * @author Matthias Leutenegger <hello@syntro.ch>
  */
-class ShareMetadataPageExtension extends DataExtension
+class ShareMetadataPageExtension extends Extension
 {
     const DEFAULT_OGTYPE = 'website';
     const DEFAULT_TWITTERTYPE = 'summary';
