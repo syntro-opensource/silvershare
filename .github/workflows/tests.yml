@@ -26,22 +26,29 @@ on:
       - master
 
 jobs:
-  silverstripe-module:
-    name: 🧰 Silverstripe Module Testsuite
-    uses: syntro-opensource/workflows/.github/workflows/silverstripe-module.yml@master
+  silverstripe-module-5:
+    name: 🧰 Silverstripe Module Testsuite 5
+    uses: syntro-opensource/workflows/.github/workflows/silverstripe-module-5.yml@master
     with:
       phpunit: true
       phpstan: true
-      phpcs: true
-  # silverstripe-client:
-  #   name: 📦 Client Testsuite
-  #   uses: syntro-opensource/workflows/.github/workflows/client.yml@master
-  #   with:
-  #     eslint: true
-  #     eslint_dir: client/src/seo-field/
-  #     eslint_configfile: client/src/seo-field/.eslintrc
-  #     eslint_ext:
-  #     eslint_max-warnings:
-  #     stylelint: true
-  #     stylelint_glob: client/src/seo-field/**/*.scss
-  #     stylelint_max-warnings:
+      # plus etwaige Konfigs
+  silverstripe-module-6:
+    name: 🧰 Silverstripe Module Testsuite 6
+    uses: syntro-opensource/workflows/.github/workflows/silverstripe-module-6.yml@master
+    with:
+      phpunit: true
+      phpstan: true
+      # plus etwaige Konfigs
+  silverstripe-module-codecoverage:
+    name: 📊 Silverstripe Code Coverage
+    uses: syntro-opensource/workflows/.github/workflows/silverstripe-module-codecoverage.yml@master
+    with:
+      php_version: 8.3
+      silverstripe_version: 6.0
+      # plus etwaige Konfigs
+  silverstripe-phpcs:
+    name: 🧹 Silverstripe PHPCS
+    uses: syntro-opensource/workflows/.github/workflows/silverstripe-phpcs.yml@master
+    with:
+      dir: src/
