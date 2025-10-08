@@ -19,6 +19,13 @@ class SharedObject extends DataObject implements TestOnly
     private static $sharing_allow_user_overwrite = true;
 
     /**
+     * Defines the database table name
+     * @config
+     * @var string
+     */
+    private static $table_name = 'TestDataObject';
+
+    /**
      * @config
      */
     private static $sharing_fallback_description = [
