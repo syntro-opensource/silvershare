@@ -11,7 +11,7 @@ on:
       - .htaccess
       - '**.md'
     branches:
-      - master
+      - '6'
   pull_request:
     paths-ignore:
       - .chglog/**
@@ -23,7 +23,7 @@ on:
       - .htaccess
       - '**.md'
     branches:
-      - master
+      - '6'
 
 jobs:
   silverstripe-module-5:
