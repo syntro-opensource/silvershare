@@ -45,7 +45,6 @@ class ShareMetadataPageExtensionTest extends SapphireTest
 
         $metatags = $sitetree->MetaComponents();
         $tagnames = array_keys($metatags);
-        throw new \Exception(var_dump($tagnames), 1);
 
         $this->assertContains('og:name', $tagnames);
         $this->assertContains('og:type', $tagnames);
