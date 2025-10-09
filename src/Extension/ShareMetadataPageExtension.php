@@ -57,7 +57,7 @@ class ShareMetadataPageExtension extends Extension
      * @param  array $tags the original tags
      * @return void
      */
-    public function updateMetaComponents($tags)
+    public function updateMetaComponents(&$tags)
     {
         $owner = $this->getOwner();
 
