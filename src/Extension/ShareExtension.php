@@ -326,10 +326,6 @@ class ShareExtension extends Extension implements SharingMetaSource
     {
         $owner = $this->getOwner();
         $fallbackField = $owner->config()->get('sharing_fallback_title');
-        $test = SiteTree::config()->get('sharing_fallback_title');
-
-        throw new \Exception(var_dump($test), 1);
-
 
         if ($fallbackField && is_array($fallbackField)) {
             foreach ($fallbackField as $field) {
