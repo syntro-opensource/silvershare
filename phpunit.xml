@@ -15,6 +15,12 @@
         <directory>tests/php</directory>
     </testsuite>
 
+    <source>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </source>
+
     <coverage>
         <exclude>
             <directory suffix=".php">vendor/</directory>
