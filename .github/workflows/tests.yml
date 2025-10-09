@@ -26,13 +26,6 @@ on:
       - '6'
 
 jobs:
-  silverstripe-module-5:
-    name: 🧰 Silverstripe Module Testsuite 5
-    uses: syntro-opensource/workflows/.github/workflows/silverstripe-module-5.yml@master
-    with:
-      phpunit: true
-      phpstan: true
-      # plus etwaige Konfigs
   silverstripe-module-6:
     name: 🧰 Silverstripe Module Testsuite 6
     uses: syntro-opensource/workflows/.github/workflows/silverstripe-module-6.yml@master
