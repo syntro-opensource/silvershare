@@ -58,6 +58,8 @@ class ShareExtensionTest extends SapphireTest
     public function testDescriptionFallback()
     {
         $object = SharedObject::create();
+        throw new \Exception(var_dump($object), 1);
+
         // without description, falls back to function
         $this->assertEquals('someString', $object->sharedOGDescription());
 
