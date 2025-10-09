@@ -1,8 +1,8 @@
----
-Name: sitetree-meta
-Before:
-  - 'tractorcow/silverstripe-fluent'
----
+# ---
+# Name: sitetree-meta
+# Before:
+#   - 'tractorcow/silverstripe-fluent'
+# ---
 SilverStripe\CMS\Model\SiteTree:
   sharing_fallback_title: Title
   sharing_fallback_description:
