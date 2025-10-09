@@ -16,6 +16,9 @@
     </testsuite>
 
     <coverage>
+        <exclude>
+            <directory suffix=".php">vendor/</directory>
+        </exclude>
         <include>
             <directory suffix=".php">src</directory>
         </include>
