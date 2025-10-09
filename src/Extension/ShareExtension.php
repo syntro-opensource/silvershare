@@ -324,7 +324,7 @@ class ShareExtension extends Extension implements SharingMetaSource
     public function getFallbackDescription()
     {
         $owner = $this->getOwner();
-        $fallbackField = $owner::config()->get('sharing_fallback_title');
+        $fallbackField = $owner->config()->get('sharing_fallback_title');
 
         if ($fallbackField && is_array($fallbackField)) {
             foreach ($fallbackField as $field) {
