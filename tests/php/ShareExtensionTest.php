@@ -59,6 +59,8 @@ class ShareExtensionTest extends SapphireTest
         $object = SharedObject::create();
         // without description, falls back to function
         $this->assertEquals('someString', $object->sharedOGDescription());
+        throw new \Exception(var_dump($object->get_extensions()), 1);
+
 
         // with description, the description is taken
         $object->Description = 'Some Description';
