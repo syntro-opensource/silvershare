@@ -309,7 +309,7 @@ class ShareExtension extends Extension implements SharingMetaSource
     public function getFallbackTitle()
     {
         $owner = $this->getOwner();
-        $fallbackField = $owner->config()->get('sharing_fallback_title');
+        $fallbackField = $owner->config()->sharing_fallback_title;
         if ($fallbackField) {
             return $this->getDescriptionFromField($fallbackField);
         }
@@ -325,7 +325,7 @@ class ShareExtension extends Extension implements SharingMetaSource
     public function getFallbackDescription()
     {
         $owner = $this->getOwner();
-        $fallbackField = $owner->config()->get('sharing_fallback_title');
+        $fallbackField = $owner->config()->sharing_fallback_title;
 
         if ($fallbackField && is_array($fallbackField)) {
             foreach ($fallbackField as $field) {
@@ -393,7 +393,7 @@ class ShareExtension extends Extension implements SharingMetaSource
     public function getFallbackImage()
     {
         $owner = $this->getOwner();
-        $fallbackField = $owner->config()->get('sharing_fallback_title');
+        $fallbackField = $owner->config()->sharing_fallback_title;
         if ($fallbackField) {
             $fallback = $owner->obj($fallbackField);
             if ($fallback instanceof Image && $fallback->isInDB()) {
