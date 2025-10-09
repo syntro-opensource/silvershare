@@ -340,6 +340,9 @@ class ShareExtension extends Extension implements SharingMetaSource
                 return $string;
             }
         }
+
+        throw new \Exception("Error Processing Request", 1);
+
         return null;
     }
 
