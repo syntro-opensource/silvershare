@@ -1,31 +1,31 @@
 <?php
 namespace Syntro\SilverShare\Extension;
 
-use SilverStripe\Core\ClassInfo;
-use SilverStripe\View\SSViewer;
-use SilverStripe\Forms\HeaderField;
-use SilverStripe\ORM\FieldType\DBHTMLText;
-use SilverStripe\ORM\FieldType\DBText;
-use SilverStripe\ORM\DataObject;
-use SilverStripe\Core\Extension;
-use SilverStripe\ORM\ManyManyList;
-use SilverStripe\ORM\ManyManyThroughList;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\ToggleCompositeField;
-use SilverStripe\Forms\DropdownField;
-use SilverStripe\Forms\TextField;
-use SilverStripe\Forms\TextareaField;
-use SilverStripe\Forms\LiteralField;
+use Page;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
-use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\RedirectorPage;
-use SilverStripe\CMS\Model\VirtualPage;
-use SilverStripe\ErrorPage\ErrorPage;
-use SilverStripe\View\Requirements;
-use Syntro\SilverShare\Interfaces\SharingMetaSource;
-use Page;
 use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\CMS\Model\VirtualPage;
+use SilverStripe\Core\ClassInfo;
+use SilverStripe\Core\Extension;
+use SilverStripe\ErrorPage\ErrorPage;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\TextareaField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\ToggleCompositeField;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\FieldType\DBHTMLText;
+use SilverStripe\ORM\FieldType\DBText;
+use SilverStripe\ORM\ManyManyList;
+use SilverStripe\ORM\ManyManyThroughList;
+use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\View\Requirements;
+use SilverStripe\View\SSViewer;
+use Syntro\SilverShare\Interfaces\SharingMetaSource;
 
 /**
  * The MetadataExtension applies the necessary functionality
