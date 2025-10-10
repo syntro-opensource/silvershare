@@ -2,8 +2,8 @@
 
 namespace Syntro\SilverShare\Dev;
 
-use SilverStripe\ORM\DataObject;
 use SilverStripe\Dev\TestOnly;
+use SilverStripe\ORM\DataObject;
 use Syntro\SilverShare\Extension\ShareExtension;
 
 /**

@@ -1,9 +1,9 @@
 <?php
 namespace Syntro\SilverShare\Extension;
 
+use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Core\Extension;
 use SilverStripe\SiteConfig\SiteConfig;
-use SilverStripe\CMS\Model\SiteTree;
 use Syntro\SilverShare\Interfaces\SharingMetaSource;
 
 /**

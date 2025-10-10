@@ -2,10 +2,10 @@
 namespace Syntro\SilverShare\Extension;
 
 use SilverStripe\AssetAdmin\Forms\UploadField;
-use SilverStripe\Forms\TextField;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\Core\Extension;
 use SilverStripe\Assets\Image;
+use SilverStripe\Core\Extension;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\ToggleCompositeField;
 
 /**
