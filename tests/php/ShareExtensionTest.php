@@ -4,6 +4,7 @@ namespace Syntro\Silvershare\Tests;
 
 use SilverStripe\Dev\SapphireTest;
 use Syntro\SilverShare\Dev\SharedObject;
+use SilverStripe\Core\Config\Config;
 
 /**
  * Test the Share extension
@@ -57,8 +58,10 @@ class ShareExtensionTest extends SapphireTest
     public function testDescriptionFallback()
     {
         $object = SharedObject::create();
+
         // without description, falls back to function
         $this->assertEquals('someString', $object->sharedOGDescription());
+
 
         // with description, the description is taken
         $object->Description = 'Some Description';

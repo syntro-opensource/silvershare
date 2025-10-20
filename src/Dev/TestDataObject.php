@@ -2,8 +2,8 @@
 
 namespace Syntro\SilverShare\Dev;
 
-use SilverStripe\ORM\DataObject;
 use SilverStripe\Dev\TestOnly;
+use SilverStripe\ORM\DataObject;
 use Syntro\SilverShare\Extension\ShareExtension;
 
 /**
@@ -17,6 +17,13 @@ class SharedObject extends DataObject implements TestOnly
      * @config
      */
     private static $sharing_allow_user_overwrite = true;
+
+    /**
+     * Defines the database table name
+     * @config
+     * @var string
+     */
+    private static $table_name = 'TestDataObject';
 
     /**
      * @config

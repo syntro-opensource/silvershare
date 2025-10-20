@@ -1,9 +1,9 @@
 <?php
 namespace Syntro\SilverShare\Extension;
 
-use SilverStripe\ORM\DataExtension;
-use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Core\Extension;
+use SilverStripe\SiteConfig\SiteConfig;
 use Syntro\SilverShare\Interfaces\SharingMetaSource;
 
 /**
@@ -14,7 +14,7 @@ use Syntro\SilverShare\Interfaces\SharingMetaSource;
  *
  * @author Matthias Leutenegger <hello@syntro.ch>
  */
-class ShareMetadataPageExtension extends DataExtension
+class ShareMetadataPageExtension extends Extension
 {
     const DEFAULT_OGTYPE = 'website';
     const DEFAULT_TWITTERTYPE = 'summary';
@@ -57,7 +57,7 @@ class ShareMetadataPageExtension extends DataExtension
      * @param  array $tags the original tags
      * @return void
      */
-    public function MetaComponents(&$tags)
+    public function updateMetaComponents(&$tags)
     {
         $owner = $this->getOwner();
 

@@ -45,6 +45,7 @@ class ShareMetadataPageExtensionTest extends SapphireTest
 
         $metatags = $sitetree->MetaComponents();
         $tagnames = array_keys($metatags);
+
         $this->assertContains('og:name', $tagnames);
         $this->assertContains('og:type', $tagnames);
         $this->assertContains('twitter:card', $tagnames);

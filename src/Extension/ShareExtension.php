@@ -1,30 +1,31 @@
 <?php
 namespace Syntro\SilverShare\Extension;
 
-use SilverStripe\Core\ClassInfo;
-use SilverStripe\View\SSViewer;
-use SilverStripe\Forms\HeaderField;
-use SilverStripe\ORM\FieldType\DBHTMLText;
-use SilverStripe\ORM\FieldType\DBText;
-use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\DataExtension;
-use SilverStripe\ORM\ManyManyList;
-use SilverStripe\ORM\ManyManyThroughList;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\ToggleCompositeField;
-use SilverStripe\Forms\DropdownField;
-use SilverStripe\Forms\TextField;
-use SilverStripe\Forms\TextareaField;
-use SilverStripe\Forms\LiteralField;
+use Page;
 use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
-use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\CMS\Model\RedirectorPage;
+use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\CMS\Model\VirtualPage;
+use SilverStripe\Core\ClassInfo;
+use SilverStripe\Core\Extension;
 use SilverStripe\ErrorPage\ErrorPage;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\TextareaField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\ToggleCompositeField;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\FieldType\DBHTMLText;
+use SilverStripe\ORM\FieldType\DBText;
+use SilverStripe\ORM\ManyManyList;
+use SilverStripe\ORM\ManyManyThroughList;
+use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\View\Requirements;
+use SilverStripe\View\SSViewer;
 use Syntro\SilverShare\Interfaces\SharingMetaSource;
-use Page;
 
 /**
  * The MetadataExtension applies the necessary functionality
@@ -32,7 +33,7 @@ use Page;
  *
  * @author Matthias Leutenegger <hello@syntro.ch>
  */
-class ShareExtension extends DataExtension implements SharingMetaSource
+class ShareExtension extends Extension implements SharingMetaSource
 {
     // /**
     //  * @config
@@ -308,7 +309,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
     public function getFallbackTitle()
     {
         $owner = $this->getOwner();
-        $fallbackField = $owner->config()->sharing_fallback_title;
+        $fallbackField = $owner->config()->get('sharing_fallback_title');
         if ($fallbackField) {
             return $this->getDescriptionFromField($fallbackField);
         }
@@ -324,7 +325,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
     public function getFallbackDescription()
     {
         $owner = $this->getOwner();
-        $fallbackField = $owner->config()->sharing_fallback_description;
+        $fallbackField = $owner->config()->get('sharing_fallback_description');
 
         if ($fallbackField && is_array($fallbackField)) {
             foreach ($fallbackField as $field) {
@@ -392,7 +393,7 @@ class ShareExtension extends DataExtension implements SharingMetaSource
     public function getFallbackImage()
     {
         $owner = $this->getOwner();
-        $fallbackField = $owner->config()->sharing_fallback_image;
+        $fallbackField = $owner->config()->get('sharing_fallback_title');
         if ($fallbackField) {
             $fallback = $owner->obj($fallbackField);
             if ($fallback instanceof Image && $fallback->isInDB()) {

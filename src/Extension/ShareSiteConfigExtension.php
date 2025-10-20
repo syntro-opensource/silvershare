@@ -2,17 +2,17 @@
 namespace Syntro\SilverShare\Extension;
 
 use SilverStripe\AssetAdmin\Forms\UploadField;
-use SilverStripe\Forms\TextField;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\ORM\DataExtension;
 use SilverStripe\Assets\Image;
+use SilverStripe\Core\Extension;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\ToggleCompositeField;
 
 /**
  * Adds some Meta fields to the siteconfig
  * @author Matthias Leutenegger <hello@syntro.ch>
  */
-class ShareSiteConfigExtension extends DataExtension
+class ShareSiteConfigExtension extends Extension
 {
     /**
      * Database fields
