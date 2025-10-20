@@ -8,8 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+<a name="6.0.0"></a>
+## [6.0.0] - 2025-10-20
+### 🍰 Added
+- SS6 support ([#13](https://github.com/syntro-opensource/silvershare/issues/13))
+
+
 <a name="1.1.0"></a>
-## [1.1.0] - 2023-05-30
+## [1.1.0] - 2023-06-28
 ### 🍰 Added
 - standardized testsuite ([#8](https://github.com/syntro-opensource/silvershare/issues/8))
 
@@ -57,7 +63,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - packagist release
 
 
-[Unreleased]: https://github.com/syntro-opensource/silvershare/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/syntro-opensource/silvershare/compare/6.0.0...HEAD
+[6.0.0]: https://github.com/syntro-opensource/silvershare/compare/1.1.0...6.0.0
 [1.1.0]: https://github.com/syntro-opensource/silvershare/compare/1.0.4...1.1.0
 [1.0.4]: https://github.com/syntro-opensource/silvershare/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/syntro-opensource/silvershare/compare/1.0.2...1.0.3
